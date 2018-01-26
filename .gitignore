@@ -1,16 +1,5 @@
 node_modules/
-plugins/
-www
-.tmp
-.sass-cache
-<%= appPath %>/bower_components
-coverage
+www/build/
 platforms/
-*.swp
-*.swo
-*.log
-*.DS_Store
-.vscode/
-*.mode1v3
-*.perspectivev3
-*.pbxuser
+plugins/
+.DS_Store
