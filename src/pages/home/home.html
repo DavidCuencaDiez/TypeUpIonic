@@ -5,23 +5,25 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item-sliding *ngFor="let book of books">
-      <ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 col-md-4 col-lg-3 col-xl-3 *ngFor="let book of books">
         <ion-card>
             <ion-item>
-                <ion-avatar item-start>
-                  <img src="{{book.Avatar}}">
-                </ion-avatar>
-                <h2>{{book.Author}}</h2>
-                <p>{{book.Title}}</p>
-              </ion-item>            
-                <img src="{{book.BookCover}}">            
-              <ion-card-content>
-                <p>{{book.Description}}</p>
-              </ion-card-content>
+              <ion-avatar item-start>
+                <img src="{{book.Avatar}}" (click)="Profile()">
+              </ion-avatar>
+              <h2>{{book.Author}}</h2>
+              <p>{{book.Title}}</p>
+            </ion-item>            
+            <img src="{{book.BookCover}}">            
+            <ion-card-content>
+              <p>
+                  {{book.Description}}
+              </p>              
+            </ion-card-content>
         </ion-card>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

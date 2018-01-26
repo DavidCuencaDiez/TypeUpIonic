@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { RegisterPage } from '../register/register';
 
 @Component({
   selector: 'page-login',
@@ -13,6 +14,9 @@ export class LoginPage {
 
  Login(){
      this.navCtrl.push(TabsPage)
+ }
+ Register(){
+  this.navCtrl.push(RegisterPage)
  }
 
 }
