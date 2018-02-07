@@ -5,15 +5,20 @@ import { FormControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'page-search',
-  templateUrl: 'search.html'
+  templateUrl: 'search.html',
+  providers:[DataProvider]
 })
 export class SearchPage {
 
   searchTerm: string = '';
-  books: any;
+  books: { Author: string; Avatar: string; Title: string; Description: string; BookCover: string; Id: string; }[];
 
-  constructor(public navCtrl: NavController, public dataService: DataProvider) {
+  constructor(public navCtrl: NavController) {
 
+  }
+
+  ionViewDidLoad(){
+   this.setFilteredItems();
   }
 
   onSearchInput(){
@@ -21,7 +26,6 @@ export class SearchPage {
   }
 
   setFilteredItems(){
-    this.books = this.dataService.filterItems(this.searchTerm);
   }
 
 }

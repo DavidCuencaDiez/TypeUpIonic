@@ -1,48 +1,31 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
-  books: { Author: string; Avatar: string; Title: string; Description: string; BookCover: string; }[];
 
-  constructor(public navCtrl: NavController) {
-    this.books = this.getBooks();
-  }
+  books: AngularFireList<any[]>;
 
-  getBooks(){
-    return [
-      {
-        Author: 'David Cuenca',
-        Avatar : 'https://png.icons8.com/color/1600/avatar.png',
-        Title: 'Candemore in da morning', 
-        Description: 'In da night to da morning hight person in da world take my vagina',
-        BookCover: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png'
-      },
-
-      {
-        Author: 'Marc Carbonell',
-        Avatar : 'https://png.icons8.com/color/1600/avatar.png',
-        Title: 'Hight the tundra', 
-        Description: 'In da night to da morning hight person in da world take my vagina',
-        BookCover: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png'
-    },
+  constructor(private afDatabase: AngularFireDatabase,
+    public navCtrl: NavController, public navParams: NavParams) {
+    
+      this.books = afDatabase.list('/books');
       
-      {
-        Author: 'Don Bosco',
-        Avatar : 'https://png.icons8.com/color/1600/avatar.png',
-        Title: 'Hard Sex', 
-        Description: 'In da night to da morning hight person in da world take my vagina',
-        BookCover: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png'
-      },
-    ]
-  }
+    }
 
-  Profile(){
-    this.navCtrl.push(ProfilePage)
+  ionViewDidLoad() {
   }
 
 }

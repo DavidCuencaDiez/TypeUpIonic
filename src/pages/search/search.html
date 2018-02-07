@@ -7,9 +7,6 @@
   <ion-content>
     <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()">
     </ion-searchbar>
-    <div *ngIf="searching" class="spinner-container">
-      <ion-spinner></ion-spinner>
-    </div>
     <ion-grid>
       <ion-row>
         <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of books">
