@@ -1,16 +1,11 @@
+import { BooksHome } from './../../models/booksHome';
 import { Book } from './../../models/Book';
 import { AddBookPage } from './../add-book/add-book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Observable } from '@firebase/util';
-
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Observable } from "rxjs/Observable";
+import { Profile } from "../../models/profile";
 
 @IonicPage()
 @Component({
@@ -19,20 +14,28 @@ import { Observable } from '@firebase/util';
 })
 export class HomePage {
 
-  booksRef: AngularFireList<any>;
-  books: Observable<any[]>;
-  
+  myBooks : Array<BooksHome> = [];  
 
   constructor(private afDatabase: AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
       
       try{
-       this.booksRef = afDatabase.list('book');        
-       this.books = this.booksRef.snapshotChanges()
-        .map(changes => {
-          return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        afDatabase.list<Book>('book').valueChanges().subscribe(book =>{
+          book.forEach(element => {
+            afDatabase.object<Profile>(`profile/${element.author}`).valueChanges().subscribe(val =>{            
+              const bookHome = {} as BooksHome;
+              bookHome.author = element.author;
+              bookHome.avatar = val.avatar;
+              bookHome.cover = element.cover;
+              bookHome.description = element.description;
+              bookHome.title = element.title;
+              bookHome.lastname = val.lastname;
+              bookHome.name = val.name;
+              console.log(bookHome);
+              this.myBooks.push(bookHome);
+            });
+          });
         });
-        
       }catch(e){
         console.error(e);      
       }
@@ -40,7 +43,6 @@ export class HomePage {
     }
 
   async addBook(){
-    console.log("hola")
     try{
       await this.navCtrl.push(AddBookPage);
     }catch(e){

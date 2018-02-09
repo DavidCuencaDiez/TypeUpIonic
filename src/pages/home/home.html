@@ -22,18 +22,18 @@
 
 <ion-content padding>
 <ion-item>
-    <ion-buttons ion-button block (click)="addBook()">Add new book</ion-buttons>
+    <button ion-button block (click)="addBook()">Add new book</button>
 </ion-item>
 
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of books">
+      <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of myBooks">
         <ion-card>
             <ion-item>
               <ion-avatar item-start>
-                <img src="https://png.icons8.com/color/1600/avatar.png">
+                <img src="{{book.avatar}}">
               </ion-avatar>
-              <h2>David Cuenca</h2>
+              <h2>{{book.name}} {{book.lastname}}</h2>
               <p>{{book.title}}</p>
             </ion-item>            
             <img src="{{book.cover}}">            

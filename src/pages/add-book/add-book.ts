@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Book } from '../../models/Book';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the AddBookPage page.
@@ -29,7 +30,7 @@ async addBook(){
     const result = await this.afAuth.authState.take(1).subscribe(auth =>{
       this.book.author = auth.uid;
       this.afDatabase.list(`book`).push(this.book).then(()=>{
-        this.navCtrl.setRoot(AddBookPage);
+        this.navCtrl.setRoot(HomePage);
       })
     });
   }catch(e){
