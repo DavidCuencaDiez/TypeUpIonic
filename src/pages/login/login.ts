@@ -1,9 +1,10 @@
+import { HomePage } from './../home/home';
+import { AddBookPage } from './../add-book/add-book';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -27,9 +28,8 @@ async login(user: User){
   try{
     const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password)
     if(result){
-      this.navCtrl.setRoot(HomePage)
+      this.navCtrl.setRoot(HomePage);
     }
-    
   }catch(e){
     console.error(e);
   }

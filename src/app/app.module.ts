@@ -21,6 +21,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import{ AngularFireAuthModule }from "angularfire2/auth"
+import { AddBookPage } from '../pages/add-book/add-book';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import{ AngularFireAuthModule }from "angularfire2/auth"
     ContactPage,
     HomePage,
     TabsPage,
-    RegisterPage
+    RegisterPage,
+    AddBookPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import{ AngularFireAuthModule }from "angularfire2/auth"
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,13 +55,14 @@ import{ AngularFireAuthModule }from "angularfire2/auth"
     SearchPage,
     HomePage,
     TabsPage,
-    RegisterPage
+    RegisterPage,
+    AddBookPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    DataProvider,
   ]
 })
 

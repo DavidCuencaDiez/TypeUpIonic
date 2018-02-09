@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>AddBook</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Title</ion-label>
+    <ion-input type="text" [(ngModel)]="book.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Description</ion-label>
+    <ion-input type="text" [(ngModel)]="book.description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Cover URL</ion-label>
+    <ion-input type="text" [(ngModel)]="book.cover"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button block (click)="addBook()">Add Book</button>
+  </ion-item>
+</ion-content>
