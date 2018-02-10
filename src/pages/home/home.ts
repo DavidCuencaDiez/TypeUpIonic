@@ -1,8 +1,9 @@
+import { ProfilePage } from './../profile/profile';
 import { BooksHome } from './../../models/booksHome';
 import { Book } from './../../models/Book';
 import { AddBookPage } from './../add-book/add-book';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from "rxjs/Observable";
 import { Profile } from "../../models/profile";
@@ -16,7 +17,7 @@ export class HomePage {
 
   myBooks : Array<BooksHome> = [];  
 
-  constructor(private afDatabase: AngularFireDatabase,
+  constructor(private afDatabase: AngularFireDatabase, private modalCtrl: ModalController,
     public navCtrl: NavController, public navParams: NavParams) {
       
       try{
@@ -31,7 +32,6 @@ export class HomePage {
               bookHome.title = element.title;
               bookHome.lastname = val.lastname;
               bookHome.name = val.name;
-              console.log(bookHome);
               this.myBooks.push(bookHome);
             });
           });
@@ -48,6 +48,12 @@ export class HomePage {
     }catch(e){
       console.error(e);
     }    
+  }
+
+  async goToProfilePage(id : string){
+    //const modal = await this.modalCtrl.create(ProfilePage, id);
+    //modal.present();
+    await this.navCtrl.push(ProfilePage,id);
   }
 
 }

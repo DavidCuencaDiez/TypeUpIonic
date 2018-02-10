@@ -14,11 +14,33 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <img src="{{background}}"/>
+  <ion-item no-lines>
     <ion-avatar item-start class="card-title">
-      <img src="{{avatar}}"/>
+      <img src="{{profileInfo.avatar}}"/>
     </ion-avatar>
-    <div class="card-subtitle">{{name}}</div>
-  </ion-card>
+    <ion-label>{{profileInfo.name}} {{profileInfo.lastname}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Bio</ion-label>
+    <ion-label>{{profileInfo.description}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Books</ion-label>
+    <ion-select [(ngModel)]="categories" multiple="true">
+      <ion-option *ngFor="let item of categoriesitems" value="{{item.name}}">{{item.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+   <ion-grid>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 *ngFor="let book of books">
+        <ion-card>
+          <img src="{{book.cover}}" alt="cover" (click)="goToBookProfile(book)"/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
 </ion-content>
