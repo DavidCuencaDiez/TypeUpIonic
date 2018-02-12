@@ -1,3 +1,4 @@
+import { BookPage } from './../pages/book/book';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -33,7 +34,8 @@ import { AddBookPage } from '../pages/add-book/add-book';
     HomePage,
     TabsPage,
     RegisterPage,
-    AddBookPage
+    AddBookPage,
+    BookPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { AddBookPage } from '../pages/add-book/add-book';
     HomePage,
     TabsPage,
     RegisterPage,
-    AddBookPage
+    AddBookPage,
+    BookPage
   ],
   providers: [
     StatusBar,

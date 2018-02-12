@@ -1,5 +1,4 @@
-import { HomePage } from './../home/home';
-import { AddBookPage } from './../add-book/add-book';
+import { TabsPage } from './../tabs/tabs';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -28,7 +27,7 @@ async login(user: User){
   try{
     const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password)
     if(result){
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(TabsPage);
     }
   }catch(e){
     console.error(e);

@@ -1,3 +1,4 @@
+import { BookPage } from './../book/book';
 import { ProfilePage } from './../profile/profile';
 import { BooksHome } from './../../models/booksHome';
 import { Book } from './../../models/Book';
@@ -55,5 +56,7 @@ export class HomePage {
     //modal.present();
     await this.navCtrl.push(ProfilePage,id);
   }
-
+  async goToBookProfile(book: BooksHome){
+    await this.navCtrl.push(BookPage,book);
+  }
 }
