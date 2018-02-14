@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import{ AngularFireAuthModule }from "angularfire2/auth"
 import { AddBookPage } from '../pages/add-book/add-book';
+import { AccordionComponent } from '../components/accordion/accordion';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AddBookPage } from '../pages/add-book/add-book';
     TabsPage,
     RegisterPage,
     AddBookPage,
-    BookPage
+    BookPage,
+    AccordionComponent
   ],
   imports: [
     BrowserModule,

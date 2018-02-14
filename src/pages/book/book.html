@@ -39,29 +39,32 @@
         
     </ion-col>
     <ion-col col-6>
-      <ion-list>
-        <ion-item>
-            <h1>Author</h1>
-        </ion-item>
-        <ion-item>          
-          <ion-avatar item-start>
-            <img src="{{book.avatar}}">
-          </ion-avatar>          
-          <h2>{{book.name}} {{book.lastname}}</h2>
-        </ion-item>
-        <ion-list>
+      <ion-list>        
+        <accordion title="Author">
           <ion-item>
-              <h2>Description</h2>
+            <ion-avatar item-start>
+              <img src="{{book.avatar}}">
+            </ion-avatar>
+            <ion-label>{{book.name}} {{book.lastname}}</ion-label>
           </ion-item>
-          <p>
-            {{book.description}}
-          </p>
-        </ion-list>
+        </accordion>
+        <accordion title="Description">
+            <ion-list>
+              {{book.description}}
+            </ion-list>
+          </accordion>
       </ion-list>
-    </ion-col>
-    <ion-col>
-      
     </ion-col>
   </ion-row>
 </ion-grid>
+
+<ion-fab right bottom>
+    <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="primary"><ion-icon name="book"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab color="light"><ion-icon name="{{addRemove}}"></ion-icon></button>
+    </ion-fab-list>
+</ion-fab>
 </ion-content>

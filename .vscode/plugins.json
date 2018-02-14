@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-firebase"]}
+{"plugins":["cordova-plugin-firebase","ionic-plugin-keyboard","cordova-plugin-whitelist","cordova-plugin-device","cordova-plugin-splashscreen","cordova-plugin-ionic-webview"]}

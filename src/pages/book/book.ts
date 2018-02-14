@@ -3,13 +3,8 @@ import { Profile } from './../../models/profile';
 import { Book } from './../../models/Book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the BookPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -18,8 +13,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BookPage {
   book = {} as BooksHome;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  addRemove: string;
+  add :boolean;
+  constructor(private afAuth: AngularFireAuth,private afDatabase : AngularFireDatabase,
+    public navCtrl: NavController, public navParams: NavParams) {
     this.book = navParams.data;
+
+  }
+
+  addRemoveBook(){
+    const book = {} as Book;
   }
 
 }
