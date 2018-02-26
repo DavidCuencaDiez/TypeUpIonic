@@ -29,7 +29,7 @@
     <ion-row>
       <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of myBooks">
         <ion-card>
-            <ion-item>
+            <ion-item>              
               <ion-avatar item-start>
                 <img src="{{book.avatar}}" (click)="goToProfilePage(book.author)">
               </ion-avatar>

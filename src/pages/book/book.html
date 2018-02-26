@@ -1,9 +1,3 @@
-<!--
-  Generated template for the BookPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -14,49 +8,26 @@
 
 
 <ion-content padding>
-<ion-grid>
-  <ion-row>
-    <ion-col col-6>
-      <ion-list>
-        <ion-item>
-          <img src="{{book.cover}}">
-        </ion-item>
-        <ion-list>
-          <button ion-button icon-only>            
-            <ion-icon name="book"></ion-icon>
-          </button>
-          <button ion-button icon-only>            
-            <ion-icon name="download"></ion-icon>
-          </button>
-          <button ion-button icon-only>            
-            <ion-icon name="add-circle"></ion-icon>
-          </button>
-          <button ion-button icon-only>
-            <ion-icon name="share"></ion-icon>       
-        </button>
-        </ion-list>
-      </ion-list>
-        
-    </ion-col>
-    <ion-col col-6>
-      <ion-list>        
-        <accordion title="Author">
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="{{book.avatar}}">
-            </ion-avatar>
-            <ion-label>{{book.name}} {{book.lastname}}</ion-label>
-          </ion-item>
-        </accordion>
-        <accordion title="Description">
-            <ion-list>
-              {{book.description}}
-            </ion-list>
-          </accordion>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-list>
+  <ion-item no-lines>
+    <img src="{{book.cover}}">
+  </ion-item>
+  <ion-item>
+      <ion-title>Author</ion-title>
+  </ion-item>
+  <ion-item no-lines>    
+    <ion-avatar item-start>
+      <img src="{{book.avatar}}">
+    </ion-avatar>
+    <ion-label>{{book.name}} {{book.lastname}}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-title>Description</ion-title>
+  </ion-item>
+  <ion-item no-lines>
+      {{book.description}}
+  </ion-item>    
+</ion-list>
 
 <ion-fab right bottom>
     <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
@@ -64,7 +35,8 @@
       <button ion-fab color="primary"><ion-icon name="book"></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="left">
-      <button ion-fab color="light"><ion-icon name="{{addRemove}}"></ion-icon></button>
+      <button ion-fab color="light" (click)="addRemoveBook()"><ion-icon name="{{addRemove}}"></ion-icon></button>
     </ion-fab-list>
 </ion-fab>
+
 </ion-content>

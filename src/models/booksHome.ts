@@ -1,4 +1,5 @@
 export interface BooksHome{
+    id: string;
     author: string;
     title: string;
     description: string; 

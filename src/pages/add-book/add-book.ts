@@ -29,6 +29,7 @@ async addBook(){
     
     const result = await this.afAuth.authState.take(1).subscribe(auth =>{
       this.book.author = auth.uid;
+      this.book.id = UniqueIdGenerator.generate();
       this.afDatabase.list(`book`).push(this.book).then(()=>{
         this.navCtrl.setRoot(HomePage);
       })
