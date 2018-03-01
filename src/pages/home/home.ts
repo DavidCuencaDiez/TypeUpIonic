@@ -23,11 +23,12 @@ export class HomePage {
       
       try{
         this.afAuth.authState.take(1).subscribe(auth =>{
-          afDatabase.list(`bookcolletion/${auth.uid}`).valueChanges().subscribe(bc =>{
+          afDatabase.database.ref(`bookcollection/${auth.uid}`).on('value',bc =>{
+            this.myBooks = []
             bc.forEach(b =>{
               afDatabase.list<Book>('book').valueChanges().subscribe(book =>{
                 book.forEach(element => {
-                  if(element.id == b){                  
+                  if(element.id == b.val()){                  
                     afDatabase.object<Profile>(`profile/${element.author}`).valueChanges().subscribe(val =>{            
                       const bookHome = {} as BooksHome;
                       bookHome.id = element.id;
@@ -43,6 +44,7 @@ export class HomePage {
                   }
                 });
               });
+              return true;
             });
           });
         });        

@@ -38,11 +38,12 @@ export class BookPage {
       })
     }else{
       await this.afAuth.authState.take(1).subscribe(auth =>{
-        var collection = this.afDatabase.database.ref(`bookcolletion/${auth.uid}`).once('value', snap =>{
+        var collection = this.afDatabase.database.ref(`bookcollection/${auth.uid}`).once('value', snap =>{
           snap.forEach( bc => {
             if(bc.val() == this.book.id){
               this.afDatabase.list(`bookcollection/${auth.uid}`).remove(bc.key);
-            }
+              return true;
+            }            
           });
         });      
         });
