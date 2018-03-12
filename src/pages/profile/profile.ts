@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{ Profile } from '../../models/profile';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -15,26 +16,43 @@ export class ProfilePage {
   books : Array<Book>;
   categories = [];
   categoriesitems = [];
-  constructor(private afDatabase: AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth: AngularFireAuth,private afDatabase: AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams) {
     this.categoriesitems = [
       {name: 'Fiction'},
       {name: 'Thriller'},
       {name: 'Candemore'},
     ]
 
-    try {
-      afDatabase.object<Profile>(`profile/${navParams.data}`).valueChanges().subscribe(val =>{
-          this.profileInfo = val;
-      });
+    try {     
 
-      afDatabase.list<Book>(`book`).valueChanges().subscribe(book =>{
-        this.books = book.filter(val=>{
-          return val.author === navParams.data;          
+        afDatabase.object<Profile>(`profile/${navParams.data}`).valueChanges().subscribe(val =>{
+            this.profileInfo = val;
         });
-      });
+
+        afDatabase.list<Book>(`book`).valueChanges().subscribe(book =>{
+          this.books = book.filter(val=>{
+            return val.author === navParams.data;          
+          });
+        });     
       
     } catch (e) {
-      console.error(e);
+      try {
+        this.afAuth.authState.take(1).subscribe(auth =>{
+          console.log(auth.uid);   
+          afDatabase.object<Profile>(`profile/${auth.uid}`).valueChanges().subscribe(val =>{
+            this.profileInfo = val;
+          });
+  
+          afDatabase.list<Book>(`book`).valueChanges().subscribe(book =>{
+            this.books = book.filter(val=>{
+              return val.author === auth.uid;          
+            });
+          });
+        });
+      } catch (e) {
+        console.error(e);
+      }
+
     }
   }
 

@@ -22,6 +22,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import{ AngularFireAuthModule }from "angularfire2/auth"
 import { AddBookPage } from '../pages/add-book/add-book';
 import { AccordionComponent } from '../components/accordion/accordion';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AccordionComponent } from '../components/accordion/accordion';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    SuperTabsModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

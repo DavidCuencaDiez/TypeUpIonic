@@ -13,17 +13,24 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'book.html',
 })
 export class BookPage {
+
+  buttonColor : string;
   book = {} as BooksHome;
   addRemove : string;
   add : boolean = false;
+  
   constructor(private afAuth: AngularFireAuth,private afDatabase : AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
+      this.addRemove = 'add';
+      this.buttonColor = 'secondary';
       this.book = navParams.data;
       this.afAuth.authState.take(1).subscribe(auth =>{
         this.afDatabase.list(`bookcollection/${auth.uid}`).valueChanges().subscribe(bc=>{
           bc.filter(b=>{
             if(b == this.book.id){
               this.add = true;
+              this.addRemove = 'remove';
+              this.buttonColor = 'danger';
             }
           })
         })
@@ -33,10 +40,15 @@ export class BookPage {
   async addRemoveBook(){
 
     if(!this.add){
+
       await this.afAuth.authState.take(1).subscribe(auth =>{
         this.afDatabase.list(`bookcollection/${auth.uid}`).push(this.book.id)
       })
+
+      this.addRemove = 'remove';
+      this.buttonColor = 'danger';
     }else{
+
       await this.afAuth.authState.take(1).subscribe(auth =>{
         var collection = this.afDatabase.database.ref(`bookcollection/${auth.uid}`).once('value', snap =>{
           snap.forEach( bc => {
@@ -47,7 +59,8 @@ export class BookPage {
           });
         });      
         });
-
+        this.buttonColor = 'secondary';
+        this.addRemove = 'add';
     }
 
     this.add = !this.add;

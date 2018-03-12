@@ -23,12 +23,13 @@ export class HomePage {
       
       try{
         this.afAuth.authState.take(1).subscribe(auth =>{
-          afDatabase.database.ref(`bookcollection/${auth.uid}`).on('value',bc =>{
+          afDatabase.database.ref(`bookcollection/${auth.uid}`).on('value', bc =>{
             this.myBooks = []
-            bc.forEach(b =>{
-              afDatabase.list<Book>('book').valueChanges().subscribe(book =>{
-                book.forEach(element => {
-                  if(element.id == b.val()){                  
+            const result = bc.val();            
+            afDatabase.list<Book>('book').valueChanges().subscribe(book =>{
+              book.forEach(element => {
+                for(var b in result){
+                  if(element.id === result[b]){                  
                     afDatabase.object<Profile>(`profile/${element.author}`).valueChanges().subscribe(val =>{            
                       const bookHome = {} as BooksHome;
                       bookHome.id = element.id;
@@ -39,15 +40,14 @@ export class HomePage {
                       bookHome.title = element.title;
                       bookHome.lastname = val.lastname;
                       bookHome.name = val.name;
-                      this.myBooks.push(bookHome);
+                      this.myBooks.push(bookHome);                      
                     });
                   }
-                });
+                };
               });
-              return true;
-            });
+            });              
           });
-        });        
+        });      
       }catch(e){
         console.error(e);      
       }

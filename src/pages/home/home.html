@@ -27,19 +27,22 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of myBooks">
+      <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of myBooks">
         <ion-card>
-            <ion-item>              
+            <!-- <ion-item>              
               <ion-avatar item-start>
                 <img src="{{book.avatar}}" (click)="goToProfilePage(book.author)">
               </ion-avatar>
               <h2>{{book.name}} {{book.lastname}}</h2>
               <p>{{book.title}}</p>
-            </ion-item>            
+            </ion-item>             -->
             <img src="{{book.cover}}" (click)="goToBookProfile(book)">            
             <ion-card-content>
+              <h2>
+                {{book.title}} 
+              </h2>
               <p>
-                  {{book.description}}
+                  {{book.name}} {{book.lastname}}              
               </p>              
             </ion-card-content>
         </ion-card>

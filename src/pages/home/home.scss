@@ -1,3 +1,18 @@
 page-home {
-
+    ion-card {
+        width:100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    ion-card-content{
+        padding: 10px 5px !important;
+    }
+    ion-card-content h2{
+        font-size: 1.2rem !important;
+        font-weight: bold !important;
+    }
+    ion-card-content p{
+        font-size: 1.0rem !important;
+        color: gray !important;
+    }
 }

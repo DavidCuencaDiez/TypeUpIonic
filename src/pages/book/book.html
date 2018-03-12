@@ -13,6 +13,12 @@
     <img src="{{book.cover}}">
   </ion-item>
   <ion-item>
+      <ion-title>Title</ion-title>
+  </ion-item>
+  <ion-item no-lines>    
+    <ion-label>{{book.title}}</ion-label>
+  </ion-item>
+  <ion-item>
       <ion-title>Author</ion-title>
   </ion-item>
   <ion-item no-lines>    
@@ -35,7 +41,7 @@
       <button ion-fab color="primary"><ion-icon name="book"></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="left">
-      <button ion-fab color="light" (click)="addRemoveBook()"><ion-icon name="{{addRemove}}"></ion-icon></button>
+      <button ion-fab [color]="buttonColor" (click)="addRemoveBook()"><ion-icon [name]="addRemove"></ion-icon></button>
     </ion-fab-list>
 </ion-fab>
 
