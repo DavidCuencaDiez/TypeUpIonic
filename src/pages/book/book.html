@@ -23,7 +23,7 @@
   </ion-item>
   <ion-item no-lines>    
     <ion-avatar item-start>
-      <img src="{{book.avatar}}">
+      <img src="{{book.avatar}}" (click)="goToProfilePage(book.author)">
     </ion-avatar>
     <ion-label>{{book.name}} {{book.lastname}}</ion-label>
   </ion-item>

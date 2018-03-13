@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ProfilePage } from './../profile/profile';
 
 @IonicPage()
 @Component({
@@ -35,6 +36,10 @@ export class BookPage {
           })
         })
       }) 
+  }
+
+  async goToProfilePage(id : string){
+    await this.navCtrl.push(ProfilePage,id);
   }
 
   async addRemoveBook(){

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{ Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AddBookPage } from './../add-book/add-book';
 
 @IonicPage()
 @Component({
@@ -16,12 +17,27 @@ export class ProfilePage {
   books : Array<Book>;
   categories = [];
   categoriesitems = [];
+
+  myProfile : boolean;
+
   constructor(private afAuth: AngularFireAuth,private afDatabase: AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams) {
     this.categoriesitems = [
       {name: 'Fiction'},
       {name: 'Thriller'},
       {name: 'Candemore'},
     ]
+
+    try {
+      this.afAuth.authState.take(1).subscribe(auth =>{
+        if( navParams.data === undefined  || auth.uid === navParams.data){
+          this.myProfile = true;
+        }else{
+          this.myProfile = false;
+        }
+      })
+    } catch (e) {
+      
+    }
 
     try {     
 
@@ -54,6 +70,14 @@ export class ProfilePage {
       }
 
     }
+  }
+
+  async addBook(){
+    try{
+      await this.navCtrl.push(AddBookPage);
+    }catch(e){
+      console.error(e);
+    }    
   }
 
   async goToBookProfile(book: Book){

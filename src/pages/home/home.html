@@ -12,7 +12,7 @@
       <ion-avatar item-start>
         <img src="https://png.icons8.com/color/1600/avatar.png">
       </ion-avatar>
-      <h2>My Books</h2>
+      <h2>My Collection</h2>
     </ion-item>
 
   </ion-navbar>
@@ -21,10 +21,6 @@
 
 
 <ion-content padding>
-<ion-item>
-    <button ion-button block (click)="addBook()">Add new book</button>
-</ion-item>
-
   <ion-grid>
     <ion-row>
       <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of myBooks">

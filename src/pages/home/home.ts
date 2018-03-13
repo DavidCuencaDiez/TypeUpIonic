@@ -1,8 +1,6 @@
 import { BookPage } from './../book/book';
-import { ProfilePage } from './../profile/profile';
 import { BooksHome } from './../../models/booksHome';
 import { Book } from './../../models/Book';
-import { AddBookPage } from './../add-book/add-book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -53,21 +51,6 @@ export class HomePage {
       }
       
     }
-
-  async addBook(){
-    try{
-      await this.navCtrl.push(AddBookPage);
-    }catch(e){
-      console.error(e);
-    }    
-  }
- async getAvatar(id){
-   const result = await this.afDatabase.object<Profile>(`profile/${id}`);
-   return result;
- }
-  async goToProfilePage(id : string){
-    await this.navCtrl.push(ProfilePage,id);
-  }
   async goToBookProfile(book: any){
     console.log(book)  
     await this.navCtrl.push(BookPage,book);
