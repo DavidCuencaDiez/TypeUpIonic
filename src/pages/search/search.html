@@ -6,16 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>search</ion-title>
+  <ion-navbar color="dark">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
-
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let book of books">
