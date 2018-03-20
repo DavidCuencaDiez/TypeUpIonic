@@ -1,3 +1,4 @@
+import { ReadBookPage } from './../read-book/read-book';
 import { Observable } from 'rxjs/Observable';
 import { BooksHome } from './../../models/booksHome';
 import { Profile } from './../../models/profile';
@@ -41,7 +42,9 @@ export class BookPage {
   async goToProfilePage(id : string){
     await this.navCtrl.push(ProfilePage,id);
   }
-
+  async goReadBook(){
+    await this.navCtrl.push(ReadBookPage);
+  }
   async addRemoveBook(){
 
     if(!this.add){

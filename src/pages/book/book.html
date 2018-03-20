@@ -37,7 +37,7 @@
 <ion-fab right bottom>
     <button ion-fab color="dark"><ion-icon name="md-share"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab color="dark"><ion-icon name="book"></ion-icon></button>
+      <button ion-fab color="dark" (click)="goReadBook()"><ion-icon name="book"></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="left">
       <button ion-fab [color]="buttonColor" (click)="addRemoveBook()"><ion-icon [name]="addRemove"></ion-icon></button>

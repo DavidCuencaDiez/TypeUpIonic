@@ -23,6 +23,7 @@ import{ AngularFireAuthModule }from "angularfire2/auth"
 import { AddBookPage } from '../pages/add-book/add-book';
 import { AccordionComponent } from '../components/accordion/accordion';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { ReadBookPage } from '../pages/read-book/read-book';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     RegisterPage,
     AddBookPage,
     BookPage,
+    ReadBookPage,
     AccordionComponent
   ],
   imports: [
@@ -60,7 +62,8 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     TabsPage,
     RegisterPage,
     AddBookPage,
-    BookPage
+    BookPage,
+    ReadBookPage
   ],
   providers: [
     StatusBar,
