@@ -1,3 +1,4 @@
+import { EditBookPage } from './../edit-book/edit-book';
 import { ReadBookPage } from './../read-book/read-book';
 import { Observable } from 'rxjs/Observable';
 import { BooksHome } from './../../models/booksHome';
@@ -20,23 +21,45 @@ export class BookPage {
   book = {} as BooksHome;
   addRemove : string;
   add : boolean = false;
-  
+  edit : boolean = false;
+
   constructor(private afAuth: AngularFireAuth,private afDatabase : AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
       this.addRemove = 'add';
       this.buttonColor = 'secondary';
-      this.book = navParams.data;
-      this.afAuth.authState.take(1).subscribe(auth =>{
-        this.afDatabase.list(`bookcollection/${auth.uid}`).valueChanges().subscribe(bc=>{
-          bc.filter(b=>{
-            if(b == this.book.id){
-              this.add = true;
-              this.addRemove = 'remove';
-              this.buttonColor = 'danger';
-            }
+      try {
+        this.afDatabase.list<Book>(`book`).valueChanges().subscribe(bo =>{
+          const myBook = bo.find(b => b.id === navParams.data);
+          this.book.author = myBook.author;
+          this.book.cover = myBook.cover;
+          this.book.description = myBook.description;
+          this.book.id = myBook.id;
+          this.book.title = myBook.title;
+
+          this.afDatabase.object<Profile>(`profile/${this.book.author }`).valueChanges().subscribe(pro => {
+            this.book.avatar = pro.avatar;
+            this.book.name = pro.name;
+            this.book.lastname = pro.lastname;
           })
-        })
-      }) 
+
+          this.afAuth.authState.take(1).subscribe(auth =>{
+            if(auth.uid == this.book.author){
+              this.edit = true;
+            }
+            this.afDatabase.list(`bookcollection/${auth.uid}`).valueChanges().subscribe(bc=>{
+              bc.filter(b=>{
+                if(b == this.book.id){
+                  this.add = true;
+                  this.addRemove = 'remove';
+                  this.buttonColor = 'danger';
+                }
+              })
+            })
+          })
+        })        
+      } catch (e) {
+        console.error(e);
+      } 
   }
 
   async goToProfilePage(id : string){
@@ -73,5 +96,7 @@ export class BookPage {
 
     this.add = !this.add;
   }
-
+  async editBook(){
+    await this.navCtrl.push(EditBookPage, this.book.id);
+  }
 }

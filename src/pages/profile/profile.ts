@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{ Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AddBookPage } from './../add-book/add-book';
+import { BookPage } from '../book/book';
 
 @IonicPage()
 @Component({
@@ -80,10 +81,8 @@ export class ProfilePage {
     }    
   }
 
-  async goToBookProfile(book: Book){
-
-    console.log(book);
-    //await this.navCtrl.push()
+  async goToBookProfile(book: string){
+    await this.navCtrl.push(BookPage,book);
   }
   
 }

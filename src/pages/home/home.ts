@@ -51,7 +51,7 @@ export class HomePage {
       }
       
     }
-  async goToBookProfile(book: any){
+  async goToBookProfile(book: string){
     console.log(book)  
     await this.navCtrl.push(BookPage,book);
   }

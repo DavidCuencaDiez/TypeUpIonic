@@ -32,7 +32,7 @@
               <h2>{{book.name}} {{book.lastname}}</h2>
               <p>{{book.title}}</p>
             </ion-item>             -->
-            <img src="{{book.cover}}" (click)="goToBookProfile(book)">            
+            <img src="{{book.cover}}" (click)="goToBookProfile(book.id)">            
             <ion-card-content>
               <h2>
                 {{book.title}} 

@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Book</ion-title>
+      <ion-title>Book</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
   </ion-list>
   <ion-list>
     <h3>Author</h3> 
-    <ion-item>
+    <ion-item no-lines>
       <ion-avatar item-start>
         <img src="{{book.avatar}}" (click)="goToProfilePage(book.author)">
       </ion-avatar>
@@ -38,9 +38,10 @@
     <button ion-fab color="dark"><ion-icon name="md-share"></ion-icon></button>
     <ion-fab-list side="top">
       <button ion-fab color="dark" (click)="goReadBook()"><ion-icon name="book"></ion-icon></button>
-    </ion-fab-list>
-    <ion-fab-list side="left">
       <button ion-fab [color]="buttonColor" (click)="addRemoveBook()"><ion-icon [name]="addRemove"></ion-icon></button>
+      <button ion-fab *ngIf="edit" color="light" (click)="editBook()"><ion-icon name="create"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">      
     </ion-fab-list>
 </ion-fab>
 

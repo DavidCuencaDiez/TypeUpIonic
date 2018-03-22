@@ -24,6 +24,7 @@ import { AddBookPage } from '../pages/add-book/add-book';
 import { AccordionComponent } from '../components/accordion/accordion';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { ReadBookPage } from '../pages/read-book/read-book';
+import { EditBookPage } from '../pages/edit-book/edit-book';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ReadBookPage } from '../pages/read-book/read-book';
     AddBookPage,
     BookPage,
     ReadBookPage,
+    EditBookPage,
     AccordionComponent
   ],
   imports: [
@@ -63,7 +65,8 @@ import { ReadBookPage } from '../pages/read-book/read-book';
     RegisterPage,
     AddBookPage,
     BookPage,
-    ReadBookPage
+    ReadBookPage,
+    EditBookPage,
   ],
   providers: [
     StatusBar,

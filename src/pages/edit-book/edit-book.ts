@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Book } from '../../models/Book';
 
 /**
- * Generated class for the ReadBookPage page.
+ * Generated class for the EditBookPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,13 +10,16 @@ import { Book } from '../../models/Book';
 
 @IonicPage()
 @Component({
-  selector: 'page-read-book',
-  templateUrl: 'read-book.html',
+  selector: 'page-edit-book',
+  templateUrl: 'edit-book.html',
 })
-export class ReadBookPage {
-  book = {} as Book;
+export class EditBookPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EditBookPage');
+  }
 
 }
