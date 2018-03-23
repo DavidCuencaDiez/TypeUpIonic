@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the EditBookPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Book } from '../../models/Book';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-book.html',
 })
 export class EditBookPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  book = {} as Book;
+  constructor(private afDatabase : AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+    this.afDatabase.list<Book>(`book`).valueChanges().subscribe(bo =>{
+      this.book = bo.find(b => b.id === navParams.data);
+    })
   }
+  async editBook(){
+    try {
+      this.afDatabase.database.ref(`book`).once('value', bo =>{
+        return bo.forEach(b => {
+            if(b.val().id == this.navParams.data){
+              console.log("update")
+              this.afDatabase.object<Book>(`book/${b.key}`).update(this.book);
+              return true
+            }
+            
+          }
+        )
+      })
+    } catch (error) {
+      console.error(error)
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditBookPage');
   }
-
 }

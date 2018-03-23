@@ -7,7 +7,7 @@ import { Book } from './../../models/Book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { ProfilePage } from './../profile/profile';
 
 @IonicPage()
@@ -28,6 +28,7 @@ export class BookPage {
       this.addRemove = 'add';
       this.buttonColor = 'secondary';
       try {
+
         this.afDatabase.list<Book>(`book`).valueChanges().subscribe(bo =>{
           const myBook = bo.find(b => b.id === navParams.data);
           this.book.author = myBook.author;
@@ -56,7 +57,9 @@ export class BookPage {
               })
             })
           })
-        })        
+        })   
+        
+        
       } catch (e) {
         console.error(e);
       } 
